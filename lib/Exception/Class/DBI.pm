@@ -1,12 +1,12 @@
 package Exception::Class::DBI;
 
-# $Id: DBI.pm,v 1.7 2002/09/15 17:52:53 david Exp $
+# $Id: DBI.pm,v 1.9 2002/12/12 20:19:48 david Exp $
 
 use 5.00500;
 use strict;
 use Exception::Class;
 use vars qw($VERSION);
-$VERSION = '0.02';
+$VERSION = '0.90';
 
 use Exception::Class ( 'Exception::Class::DBI' =>
                        { description => 'DBI exception',
@@ -50,22 +50,22 @@ sub handler {
         if (ref $dbh) {
             # Assemble arguments for a handle exception.
             my @params = ( error               => $err,
-                            errstr              => $dbh->errstr,
-                            err                 => $dbh->err,
-                            state               => $dbh->state,
-                            retval              => $retval,
-                            warn                => $dbh->{Warn},
-                            active              => $dbh->{Active},
-                            kids                => $dbh->{Kids},
-                            active_kids         => $dbh->{ActiveKids},
-                            compat_mode         => $dbh->{CompatMode},
-                            inactive_destroy    => $dbh->{InactiveDestroy},
-                            trace_level         => $dbh->{TraceLevel},
-                            fetch_hash_key_name => $dbh->{FetchHashKeyName},
-                            chop_blanks         => $dbh->{ChopBlanks},
-                            long_read_len       => $dbh->{LongReadLen},
-                            long_trunc_ok       => $dbh->{LongTruncOk},
-                            taint               => $dbh->{Taint},
+                           errstr              => $dbh->errstr,
+                           err                 => $dbh->err,
+                           state               => $dbh->state,
+                           retval              => $retval,
+                           warn                => $dbh->{Warn},
+                           active              => $dbh->{Active},
+                           kids                => $dbh->{Kids},
+                           active_kids         => $dbh->{ActiveKids},
+                           compat_mode         => $dbh->{CompatMode},
+                           inactive_destroy    => $dbh->{InactiveDestroy},
+                           trace_level         => $dbh->{TraceLevel},
+                           fetch_hash_key_name => $dbh->{FetchHashKeyName},
+                           chop_blanks         => $dbh->{ChopBlanks},
+                           long_read_len       => $dbh->{LongReadLen},
+                           long_trunc_ok       => $dbh->{LongTruncOk},
+                           taint               => $dbh->{Taint},
                          );
             if (UNIVERSAL::isa($dbh, 'DBI::dr')) {
                 # Just throw a driver exception. It has no extra attributes.
@@ -162,7 +162,7 @@ This module offers a set of DBI-specific exception classes. They inherit from
 Exception::Class, the base class for all exception objects created by the
 Exception::Class module from the CPAN. Exception::Class::DBI itself offers a
 single class method, C<handler()>, that returns a code reference appropriate
-for passing the DBI C<HandleError> attribute.
+for passing to the DBI C<HandleError> attribute.
 
 The exception classes created by Exception::Class::DBI are designed to be
 thrown in certain DBI contexts; the code reference returned by C<handler()>
