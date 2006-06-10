@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-# $Id: dbh.t,v 1.5 2002/09/17 03:32:47 david Exp $
+# $Id: dbh.t 682 2004-09-28 05:59:10Z theory $
 
 use strict;
 use Test::More (tests => 27);
