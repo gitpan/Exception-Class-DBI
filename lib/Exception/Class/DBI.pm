@@ -1,12 +1,12 @@
 package Exception::Class::DBI;
 
-# $Id: DBI.pm 2901 2006-06-10 02:07:05Z theory $
+# $Id: DBI.pm 2921 2006-06-30 00:02:42Z theory $
 
 use 5.00500;
 use strict;
 use Exception::Class;
 use vars qw($VERSION);
-$VERSION = '0.93';
+$VERSION = '0.94';
 
 use Exception::Class (
     'Exception::Class::DBI' => {
@@ -40,8 +40,10 @@ use Exception::Class (
     }
 );
 
+my %handlers;
 sub handler {
     my $pkg = shift;
+    return $handlers{$pkg} if $handlers{$pkg};
 
     # Support subclasses.
     my %class_for =  map {
@@ -59,7 +61,7 @@ sub handler {
         }
     } qw(H DRH DBH STH Unknown);
 
-    return sub {
+    return $handlers{$pkg} = sub {
         my ($err, $dbh, $retval) = @_;
 
         # No handle, no choice.
@@ -147,7 +149,7 @@ Exception::Class::DBI - DBI Exception objects
   my $dbh = DBI->connect($dsn, $user, $pass, {
       PrintError  => 0,
       RaiseError  => 0,
-      HandleError => Exception::Class::DBI->handler
+      HandleError => Exception::Class::DBI->handler,
   });
 
   eval { $dbh->do($sql) };
