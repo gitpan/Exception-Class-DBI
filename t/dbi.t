@@ -1,10 +1,10 @@
 #!/usr/bin/perl -w
 
-# $Id: dbi.t 682 2004-09-28 05:59:10Z theory $
+# $Id: dbi.t 3051 2006-07-18 22:13:37Z theory $
 
 use strict;
-use Test::More (tests => 14);
-BEGIN { use_ok('Exception::Class::DBI') }
+use Test::More tests => 14;
+BEGIN { use_ok('Exception::Class::DBI') or die }
 use DBI;
 
 eval {

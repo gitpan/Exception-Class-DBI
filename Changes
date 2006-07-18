@@ -1,5 +1,11 @@
 Revision history for Perl extension Exception::Class::DBI.
 
+0.95    2006-07-18T22:14:41
+        - Fixed test failure for localized error messages. Reported by Jens
+          Maier with a fix from Daniel Brook.
+        - Updated tests to use is($foo, $bar) instead of ok( $foo == $bar)
+          Spotted by Andy Lester.
+
 0.94  2006-06-30T00:04:32
         - The handler() method now always returns the same code referernce
           each time it's called for a given subclass. This behavior prevents
