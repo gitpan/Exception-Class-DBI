@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-# $Id: dbh.t 3051 2006-07-18 22:13:37Z theory $
+# $Id: dbh.t 3317 2007-10-26 18:59:49Z theory $
 
 use strict;
 use Test::More tests => 28;
@@ -8,12 +8,13 @@ BEGIN { use_ok('Exception::Class::DBI') or die }
 use DBI;
 
 ok( my $dbh = DBI->connect(
-'dbi:ExampleP:dummy', '', '',
-                           { PrintError => 0,
-                             RaiseError => 0,
-                             HandleError => Exception::Class::DBI->handler
-                           }),
-    "Connect to database" );
+    'dbi:ExampleP:dummy', '', '',
+    {
+        PrintError => 0,
+        RaiseError => 0,
+        HandleError => Exception::Class::DBI->handler
+    }),
+    'Connect to database' );
 
 END { $dbh->disconnect if $dbh };
 
@@ -32,7 +33,7 @@ isa_ok( $err, 'Exception::Class::DBI::H' );
 isa_ok( $err, 'Exception::Class::DBI::DBH' );
 
 # Check the accessor values.
-is( $err->err, 1, "Check err" );
+is( $err->err, $DBI::stderr || 1, "Check err" );
 is( $err->errstr, 'Unknown field names: foo', "Check errstr" );
 is( $err->error, 'DBD::ExampleP::db do failed: Unknown field names: foo',
     "Check error" );
