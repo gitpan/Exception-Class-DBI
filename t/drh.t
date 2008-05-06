@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-# $Id: drh.t 3051 2006-07-18 22:13:37Z david $
+# $Id: drh.t 3831 2008-05-06 17:49:25Z david $
 
 use strict;
 use Test::More tests => 21;
@@ -49,3 +49,7 @@ SKIP: {
     ok( ! $err->long_trunc_ok, "Check long_trunc_ok" );
     ok( ! $err->taint, "Check taint" );
 }
+
+# This keeps Perl 5.6.2 from trying to run tests again. I've no idea why it
+# does that. :-(
+exit;

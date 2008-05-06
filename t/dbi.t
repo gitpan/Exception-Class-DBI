@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-# $Id: dbi.t 3051 2006-07-18 22:13:37Z david $
+# $Id: dbi.t 3831 2008-05-06 17:49:25Z david $
 
 use strict;
 use Test::More tests => 14;
@@ -8,11 +8,11 @@ BEGIN { use_ok('Exception::Class::DBI') or die }
 use DBI;
 
 eval {
-    DBI->connect('dbi:Bogus', '', '',
-                 { PrintError => 0,
-                   RaiseError => 0,
-                   HandleError => Exception::Class::DBI->handler
-                 });
+    DBI->connect( 'dbi:Bogus', '', '', {
+        PrintError => 0,
+        RaiseError => 0,
+        HandleError => Exception::Class::DBI->handler
+    });
 };
 
 ok( my $err = $@, "Catch exception" );
@@ -64,3 +64,7 @@ SKIP: {
         }
     }
 }
+
+# This keeps Perl 5.6.2 from trying to run tests again. I've no idea why it
+# does that. :-(
+exit;
