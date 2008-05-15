@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-# $Id: dbh.t 3831 2008-05-06 17:49:25Z david $
+# $Id: dbh.t 3835 2008-05-06 18:20:09Z david $
 
 use strict;
 use Test::More tests => 28;
@@ -33,7 +33,11 @@ isa_ok( $err, 'Exception::Class::DBI::H' );
 isa_ok( $err, 'Exception::Class::DBI::DBH' );
 
 # Check the accessor values.
-is( $err->err, $DBI::stderr || 1, "Check err" );
+NOWARN: {
+    # Prevent Perl 5.6 from complaining about usng $DBI::stderr only once.
+    local $^W;
+    is( $err->err, $DBI::stderr || 1, "Check err" );
+}
 is( $err->errstr, 'Unknown field names: foo', "Check errstr" );
 is( $err->error, 'DBD::ExampleP::db do failed: Unknown field names: foo',
     "Check error" );
