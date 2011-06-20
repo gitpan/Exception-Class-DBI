@@ -1,12 +1,10 @@
 package Exception::Class::DBI;
 
-# $Id: DBI.pm 3906 2008-05-15 03:28:13Z david $
-
 use 5.00500;
 use strict;
 use Exception::Class;
 use vars qw($VERSION);
-$VERSION = '1.00';
+$VERSION = '1.01';
 
 use Exception::Class (
     'Exception::Class::DBI' => {
@@ -126,17 +124,6 @@ sub rows_in_cache       { shift->handle->{RowsInCache} }
 1;
 __END__
 
-=begin comment
-
-Fake-out Module::Build. Delete if it ever changes to support =head1 headers
-other than all uppercase.
-
-=head1 NAME
-
-Exception::Class::DBI - DBI Exception objects
-
-=end comment
-
 =head1 Name
 
 Exception::Class::DBI - DBI Exception objects
@@ -176,7 +163,7 @@ attribute.
 The exception classes created by Exception::Class::DBI are designed to be
 thrown in certain DBI contexts; the code reference returned by C<handler()>
 and passed to the DBI C<HandleError> attribute determines the context and
-throws the apopropriate exception.
+throws the appropriate exception.
 
 Each of the Exception::Class::DBI classes offers a set of object accessor
 methods in addition to those provided by Exception::Class. These can be used
@@ -617,25 +604,18 @@ STH exceptions.
 
 =head1 Support
 
-This module is stored in an open repository at the following address:
+This module is stored in an open L<GitHub
+repository|http://github.com/theory/exception-class-dbi/>. Feel free to fork
+and contribute!
 
-L<https://svn.kineticode.com/Exception-Class-DBI/trunk/>
-
-Patches against Exception::Class::DBI are welcome. Please send bug reports to
-<bug-exception-class-dbi@rt.cpan.org>.
+Please file bug reports via L<GitHub
+Issues|http://github.com/theory/exception-class-dbi/issues/> or by sending
+mail to
+L<bug-Exception-Class-DBI.cpan.org|mailto:bug-Exception-Class-DBI.cpan.org>.
 
 =head1 Author
 
-=begin comment
-
-Fake-out Module::Build. Delete if it ever changes to support =head1 headers
-other than all uppercase.
-
-=head1 AUTHOR
-
-=end comment
-
-David Wheeler <david@kineticode.com>
+David E. Wheeler <david@justatheory.com>
 
 =head1 See Also
 
@@ -648,7 +628,7 @@ it. There's lots more information in these exception objects, so use them!
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2002-2008, David Wheeler. Some Rights Reserved.
+Copyright (c) 2002-2011, David E. Wheeler. Some Rights Reserved.
 
 This module is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself.

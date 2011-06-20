@@ -1,7 +1,5 @@
 #!/usr/bin/perl -w
 
-# $Id: dbi.t 3831 2008-05-06 17:49:25Z david $
-
 use strict;
 use Test::More tests => 14;
 BEGIN { use_ok('Exception::Class::DBI') or die }

@@ -1,7 +1,5 @@
 #!/usr/bin/perl -w
 
-# $Id: sth.t 3831 2008-05-06 17:49:25Z david $
-
 use strict;
 use Test::More tests => 35;
 BEGIN { use_ok('Exception::Class::DBI') or die }
@@ -53,7 +51,7 @@ ok( ! $err->inactive_destroy, 'Check inactive_destroy' );
 {
     # PurePerl->{TraceLevel} should return an integer, but it doesn't. It
     # returns undef instead.
-    local $^W;
+    local $SIG{__WARN__} = sub {};
     cmp_ok( $err->trace_level, '==', 0, 'Check trace_level' );
 }
 
